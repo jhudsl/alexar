@@ -1,0 +1,22 @@
+Encoding: UTF-8
+Package: alexar
+Type: Package
+Title: A plumber extension to support Amazon Alexa custom skills
+Version: 0.1.0
+Date: 2017-04-05
+Roxygen: list(markdown = TRUE)
+Authors@R: c(
+  person(family="Trestle Technology, LLC", role="aut", email="cran@trestletech.com"),
+  person("Jeff", "Allen", role="cre", email="cran@trestletech.com"))
+License: MIT + file LICENSE
+Description: Enables authors to write custom skills for Amazon Alexa
+  based on plumber APIs.
+Depends:
+    R (>= 3.0.0)
+Imports:
+    plumber
+LazyData: TRUE
+Suggests:
+    testthat (>= 0.11.0)
+Collate: 
+RoxygenNote: 6.0.1
