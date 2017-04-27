@@ -18,5 +18,8 @@ Imports:
 LazyData: TRUE
 Suggests:
     testthat (>= 0.11.0)
-Collate: 
+Collate:
+  response.R
+  dispatch.R
+  validate.R
 RoxygenNote: 6.0.1
