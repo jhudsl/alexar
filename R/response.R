@@ -11,7 +11,7 @@ alexaResponse <- function(output, card, reprompt, endSession=FALSE) {
   res <- list()
 
   if (!missing(output)){
-    res$outputSpeech <- list(outputSpeech=list(type="PlainText", text=output))
+    res$outputSpeech <- list(type="PlainText", text=output)
   }
 
   if (!missing(card)){
