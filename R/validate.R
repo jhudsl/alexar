@@ -4,6 +4,11 @@
 #' @import urltools
 #' @export
 validateAlexaRequest <- function(req){
+  doValidate(req)
+}
+
+# Internal function that allows for mocking of some system-level calls
+doValidate <- function(req, now=Sys.time(), download=download.file){
   # TODO: cache cert URL handling
 
   # 1. Verify that the URL matches the format used by amazon
@@ -29,7 +34,7 @@ validateAlexaRequest <- function(req){
 
   # 2. Download the PEM Cert file
   crtFile <- tempfile(fileext=".crt")
-  download.file(certURL, crtFile)
+  download(certURL, crtFile)
   chain <- openssl::read_cert_bundle(crtFile)
   file.remove(crtFile)
 
@@ -39,16 +44,16 @@ validateAlexaRequest <- function(req){
   start <- strptime(validity[1], "%b %e %H:%M:%S %Y", tz="GMT")
   end <- strptime(validity[2], "%b %e %H:%M:%S %Y", tz="GMT")
 
-  if (start > Sys.time()){
+  if (start > now){
     stop("Certificate validity set to start in the future")
   }
 
-  if (end < Sys.time()){
+  if (end < now){
     stop("Certificate has expired")
   }
 
   #   3b. Check that it's an echo domain cert
-  forEcho <- grepl("echo-api.amazon.com", chain[[1]]$subject, fixed = TRUE)
+  forEcho <- grepl("echo-api.amazon.com", as.list(chain[[1]])$subject, fixed = TRUE)
   if (!forEcho){
     stop("Invalid cert domain")
   }
@@ -69,12 +74,12 @@ validateAlexaRequest <- function(req){
   # 7. Generate the SHA1 hash of the request body
   # 8. Compare the hashes
   body <- req$postBody
-  signature_verify(data=charToRaw(body), sig=encSig, hash=openssl::sha1, pubkey=pubkey)
+  openssl::signature_verify(data=charToRaw(body), sig=encSig, hash=openssl::sha1, pubkey=pubkey)
 
   # 9. Check timestamp
   ts <- req$args$request$timestamp
   time <- strptime(ts, format="%Y-%m-%dT%H:%M:%SZ", tz="GMT")
-  delta <- as.integer(difftime(ts, Sys.time(), units="secs"))
+  delta <- as.integer(difftime(time, now, units="secs"))
   if (abs(delta) > 150){
     stop("Timestamp on request differs by ", delta, " seconds. Must be within 150.")
   }
