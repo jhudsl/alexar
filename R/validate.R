@@ -1,13 +1,18 @@
 #' Validate an Alexa Request
+#'
+#' See https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-web-service#h2_verify_sig_cert for more details.
 #' @include globals.R
 #' @import openssl
 #' @import urltools
+#' @param req The incoming plumber request to validate
 #' @export
 validateAlexaRequest <- function(req){
   doValidate(req)
 }
 
 # Internal function that allows for mocking of some system-level calls
+#' @importFrom utils download.file
+#' @noRd
 doValidate <- function(req, now=Sys.time(), download=download.file){
   # TODO: cache cert URL handling
 
