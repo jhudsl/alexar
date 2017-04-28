@@ -14,12 +14,15 @@ Description: Enables authors to write custom skills for Amazon Alexa
 Depends:
     R (>= 3.0.0)
 Imports:
-    plumber
+    plumber,
+    openssl,
+    urltools
 LazyData: TRUE
 Suggests:
     testthat (>= 0.11.0)
-Collate:
-  response.R
-  dispatch.R
-  validate.R
+Collate: 
+    'dispatch.R'
+    'globals.R'
+    'response.R'
+    'validate.R'
 RoxygenNote: 6.0.1
