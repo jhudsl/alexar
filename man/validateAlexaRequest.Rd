@@ -6,6 +6,9 @@
 \usage{
 validateAlexaRequest(req)
 }
+\arguments{
+\item{req}{The incoming plumber request to validate}
+}
 \description{
-Validate an Alexa Request
+See https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-web-service#h2_verify_sig_cert for more details.
 }
