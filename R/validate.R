@@ -1,6 +1,12 @@
 #' Validate an Alexa Request
 #'
-#' See https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-web-service#h2_verify_sig_cert for more details.
+#' Validate that an incoming request is legitimate (i.e. from Amazon). This
+#' validation on incoming requests is not only important for security, but also
+#' required in order for Amazon to certify your Alexa custom skill.
+#'
+#' See
+#' https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-web-service#h2_verify_sig_cert
+#' for more details.
 #' @include globals.R
 #' @import openssl
 #' @import urltools
