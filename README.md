@@ -62,6 +62,16 @@ function(req){
 }
 ```
 
+A few points on this code
+ 
+ - We library() the alexar package so that we can use the two main functions in our API
+ - We only define a single plumber endpoint: `@post /`. Alexa Custom Skills only use a single POST endpoint and send a variety of requests to that same endpoint.
+  - We add the `@serlializer unboxedJSON` annotation to our service. This is important in order to render JSON in the format that Amazon expects. This may become unnecessary in the future, but it will never hurt to have it.
+  - Our plumber function just does one thing: runs `dispatchAlexaRequest`. This is an alexar function that is used to dispatch an incoming request to the appropriate handler: `intent`, `launch`, or `end`. More details about these types of requests and when you'd expect each are available [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/supported-phrases-to-begin-a-conversation). In short, `intent` requests mean the user actually asked your custom skill to perform some action.
+  - The delegated functions always return an object formatted by `alexaResponse`. This function can return a properly formatted response in the way that Amazon expects which either provides some output, reprompts the user for additional information, and optionally shows a card with some text or images on the Alexa app.
+
+And that's all you need to create a custom alexa skill using alexar and plumber. It can take some time to get fully familiar with the Amazon models behind the scenes here and how users can interact with you custom skill via their Alexa products, but the portion that you need to handle in R is as simple as is outlined above!
+
 More documentation from Amazon is available [here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/overviews/steps-to-build-a-custom-skill#step-4-write-and-test-the-code-for-your-skill). 
 
 ### Step 5 - Submit your skill for certification
