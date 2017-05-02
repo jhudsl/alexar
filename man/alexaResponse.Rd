@@ -4,8 +4,7 @@
 \alias{alexaResponse}
 \title{Prepare a Response for Alexa}
 \usage{
-alexaResponse(output, card, reprompt, sessionAttributes = NULL,
-  endSession = FALSE)
+alexaResponse(output, card, reprompt, attributes = NULL, endSession = FALSE)
 }
 \arguments{
 \item{output}{A character string containing the words Alexa should read back
@@ -25,7 +24,7 @@ in your voice interface while the audio stream is open. If this is not set,
 the user is not re-prompted."
 https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-object}
 
-\item{sessionAttributes}{A list of data to attach to this Alexa session.
+\item{attributes}{A list of data to attach to this Alexa session.
 Subsequent requests from this session will include whatever data you
 provide here in the \code{attributes} field.}
 
