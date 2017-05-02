@@ -4,8 +4,8 @@
 \alias{dispatchAlexaRequest}
 \title{Dispatch Alexa Request to Handlers}
 \usage{
-dispatchAlexaRequest(req, intent = function(name, slots, ...) { },
-  launch = function(...) { }, end = function(...) { })
+dispatchAlexaRequest(req, intent = function(name, slots, attributes, ...) { },
+  launch = function(...) { }, end = function(attributes, ...) { })
 }
 \arguments{
 \item{req}{The plumber request to dispatch on.}

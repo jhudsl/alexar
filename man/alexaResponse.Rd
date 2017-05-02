@@ -4,7 +4,8 @@
 \alias{alexaResponse}
 \title{Prepare a Response for Alexa}
 \usage{
-alexaResponse(output, card, reprompt, endSession = FALSE)
+alexaResponse(output, card, reprompt, sessionAttributes = NULL,
+  endSession = FALSE)
 }
 \arguments{
 \item{output}{A character string containing the words Alexa should read back
@@ -23,6 +24,10 @@ but the user does not respond with anything that maps to an intent defined
 in your voice interface while the audio stream is open. If this is not set,
 the user is not re-prompted."
 https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-object}
+
+\item{sessionAttributes}{A list of data to attach to this Alexa session.
+Subsequent requests from this session will include whatever data you
+provide here in the \code{attributes} field.}
 
 \item{endSession}{If \code{TRUE}, will force the session to close as a result of
 this response.}
