@@ -25,6 +25,9 @@ dispatchAlexaRequest <- function(req, intent=function(name, slots, attributes, .
 
   type <- request$type
   attributes <- request$args$attributes
+  if (is.null(attributes)){
+    attributes <- list()
+  }
 
   if (type == "IntentRequest"){
     intent(name=request$intent$name, slots=request$intent$slots, attributes=attributes)

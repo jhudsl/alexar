@@ -15,7 +15,7 @@ function(req){
     } else {
       alexaResponse(output="I don't know how to process this request...")
     }
-  }, launch=function(){
+  }, launch=function(...){
     alexaResponse("Jeff Leek is always prepared.")
   })
 }
