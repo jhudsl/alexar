@@ -4,7 +4,7 @@
 \alias{alexaResponse}
 \title{Prepare a Response for Alexa}
 \usage{
-alexaResponse(output, card, reprompt, attributes, endSession = FALSE)
+alexaResponse(output, card, reprompt, attributes = NULL, endSession = FALSE)
 }
 \arguments{
 \item{output}{A character string containing the words Alexa should read back
@@ -24,9 +24,16 @@ in your voice interface while the audio stream is open. If this is not set,
 the user is not re-prompted."
 https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-object}
 
-\item{attributes}{A list of data to attach to this Alexa session.
-Subsequent requests from this session will include whatever data you
-provide here in the \code{attributes} field.}
+\item{attributes}{A list of data to attach to this Alexa session. Subsequent
+requests from this session will include whatever data you provide here in
+the \code{attributes} field.
+
+Note that every response must include all attributes that you wish to
+persist. If you return a single response of any type that doesn't include
+any attributes, then all attributes will be cleared from the session
+immediately. Thus, if you want to persist session state across requests,
+you'll need to carry these attributes forward through each response, by
+passing back the \code{attributes} on every single response.}
 
 \item{endSession}{If \code{TRUE}, will force the session to close as a result of
 this response.}
