@@ -4,7 +4,7 @@
 \alias{alexaResponse}
 \title{Prepare a Response for Alexa}
 \usage{
-alexaResponse(output, card, reprompt, attributes = NULL, endSession = FALSE)
+alexaResponse(output, card, reprompt, attributes, endSession = FALSE)
 }
 \arguments{
 \item{output}{A character string containing the words Alexa should read back

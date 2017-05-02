@@ -24,7 +24,7 @@
 #'   this response.
 #'
 #' @export
-alexaResponse <- function(output, card, reprompt, attributes=NULL, endSession=FALSE) {
+alexaResponse <- function(output, card, reprompt, attributes, endSession=FALSE) {
   if (missing(output) && missing(reprompt)) {
     stop("You must provide either an `output` or a `reprompt` value.")
   }
@@ -43,10 +43,15 @@ alexaResponse <- function(output, card, reprompt, attributes=NULL, endSession=FA
     res$reprompt <- list(outputSpeech=list(type="PlainText", text=reprompt))
   }
 
-  list(
+  toReturn <- list(
     version="1.0",
-    sessionAttributes = attributes,
     response=res,
     shouldEndSession = endSession
   )
+
+  if(!missing(attributes)){
+    toReturn$sessionAttributes <- attributes
+  }
+
+  toReturn
 }
