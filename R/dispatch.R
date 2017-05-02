@@ -18,8 +18,8 @@
 #' `...` is a way of ensuring that they won't break if/when alexar begins
 #' passing in new parameters that your code doesn't recognize or use.
 #' @export
-dispatchAlexaRequest <- function(req, intent=function(name, slots, attributes, ...){},
-                                 launch=function(...){}, end=function(attributes, ...){}){
+dispatchAlexaRequest <- function(req, intent=function(name, slots, attributes, req, ...){},
+                                 launch=function(req, ...){}, end=function(attributes,  req, ...){}){
   validateAlexaRequest(req)
   request <- req$args$request
 
@@ -30,11 +30,11 @@ dispatchAlexaRequest <- function(req, intent=function(name, slots, attributes, .
   }
 
   if (type == "IntentRequest"){
-    intent(name=request$intent$name, slots=request$intent$slots, attributes=attributes)
+    intent(name=request$intent$name, slots=request$intent$slots, attributes=attributes, req=req)
   } else if (type == "LaunchRequest"){
-    launch()
+    launch(req=req)
   } else if (type == "SessionEndedRequest"){
-    end(attributes=attributes)
+    end(attributes=attributes, req=req)
   } else {
     stop("Unrecognized request type: ", type)
   }
