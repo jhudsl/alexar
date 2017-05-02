@@ -10,7 +10,8 @@ function(req){
       if (is.null(attributes$favoriteColor)){
         return(alexaResponse(output="I don't know! You need to tell me your favorite color first."))
       }
-      alexaResponse(output=paste0("Your favorite color is ", attributes$favoriteColor))
+      # Return the response AND persist the attributes for future requests
+      alexaResponse(output=paste0("Your favorite color is ", attributes$favoriteColor), attributes=attributes)
     } else if (name == "setcolor"){
       alexaResponse(output="Great! I'll remember your favorite color next time you ask.",
                                   attributes=list(favoriteColor=slots$color$value))
