@@ -84,8 +84,8 @@ doValidate <- function(req, now=Sys.time(), download=download.file){
   # 6. Decrypt the encrypted hash value
   # 7. Generate the SHA1 hash of the request body
   # 8. Compare the hashes
-  body <- req$postBody
-  openssl::signature_verify(data=charToRaw(body), sig=encSig, hash=openssl::sha1, pubkey=pubkey)
+  postBody <- req$postBody
+  openssl::signature_verify(data=charToRaw(postBody), sig=encSig, hash=openssl::sha1, pubkey=pubkey)
 
   # 9. Check timestamp
   ts <- req$args$request$timestamp
