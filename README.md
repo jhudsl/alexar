@@ -40,7 +40,7 @@ Again, this is just handled between you and Amazon. Their documentation is [here
 
 ### Step 4 - Write and test the code for your skill
 
-This is where you'll actually use the alexar package. Your job in this stage is to define a plumber API that uses alexar to define a valid Alexa custom skill. You can see an example of a basic service at [inst/examples/01-jeffleek](https://github.com/trestletech/alexar/blob/master/inst/examples/01-jeffleek/jeffleek.R).
+This is where you'll actually use the alexar package. Your job in this stage is to define a plumber API that uses alexar to define a valid Alexa custom skill. You can see an example of a basic service at [inst/examples/01-jeffleek](./inst/examples/01-jeffleek/).
 
 The most basic example would be something like
 
